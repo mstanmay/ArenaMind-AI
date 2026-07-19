@@ -1,0 +1,105 @@
+# ─────────────────────────────────────────────────────────
+# ArenaMind AI — Docker Compose Full Stack
+# ─────────────────────────────────────────────────────────
+version: "3.9"
+
+services:
+  # ── FastAPI Backend ──────────────────────────────────
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: arenamind-api
+    ports:
+      - "8000:8000"
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://arenamind:arenamind@postgres:5432/arenamind
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - QDRANT_URL=http://qdrant:6333
+      - BLOCKCHAIN_PROVIDER=mock
+      - MFA_ENCRYPTION_KEY=CHANGE_ME_TO_A_FERNET_KEY_BASE64_ENCODED
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      qdrant:
+        condition: service_started
+    volumes:
+      - .:/app
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    restart: unless-stopped
+
+  # ── Celery Worker ────────────────────────────────────
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    container_name: arenamind-worker
+    env_file: .env
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://arenamind:arenamind@postgres:5432/arenamind
+      - REDIS_URL=redis://redis:6379/0
+      - CELERY_BROKER_URL=redis://redis:6379/1
+      - CELERY_RESULT_BACKEND=redis://redis:6379/2
+      - QDRANT_URL=http://qdrant:6333
+      - BLOCKCHAIN_PROVIDER=mock
+      - MFA_ENCRYPTION_KEY=CHANGE_ME_TO_A_FERNET_KEY_BASE64_ENCODED
+    depends_on:
+      - redis
+      - postgres
+    command: celery -A app.workers.celery_app worker --loglevel=info --concurrency=4
+    restart: unless-stopped
+
+  # ── PostgreSQL ───────────────────────────────────────
+  postgres:
+    image: postgres:16-alpine
+    container_name: arenamind-postgres
+    environment:
+      POSTGRES_USER: arenamind
+      POSTGRES_PASSWORD: arenamind
+      POSTGRES_DB: arenamind
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U arenamind"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis ────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: arenamind-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Qdrant Vector Database ──────────────────────────
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: arenamind-qdrant
+    ports:
+      - "6333:6333"
+      - "6334:6334"
+    volumes:
+      - qdrant_data:/qdrant/storage
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  qdrant_data:
