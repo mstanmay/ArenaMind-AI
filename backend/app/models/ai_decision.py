@@ -1,6 +1,6 @@
-"""AI Decision audit log — records every AI decision with full explainability and blockchain verification."""
+"""AI Decision audit log — records every AI decision with full explainability and cryptographic verification."""
 
-from sqlalchemy import String, Float, Boolean, Text, JSON, Index
+from sqlalchemy import String, Float, Boolean, Text, JSON, Index, event
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.core.database import Base
@@ -24,8 +24,17 @@ class AIDecision(Base):
     raw_llm_response: Mapped[str | None] = mapped_column(Text, nullable=True)
     tokens_used: Mapped[int | None] = mapped_column(nullable=True)
     latency_ms: Mapped[float | None] = mapped_column(Float, nullable=True)
+    signature: Mapped[str | None] = mapped_column(String(64), nullable=True)
 
     __table_args__ = (
         Index("ix_ai_decisions_agent_status", "agent_type", "status"),
         Index("ix_ai_decisions_priority", "priority"),
     )
+
+
+@event.listens_for(AIDecision, "before_insert")
+def set_ai_decision_signature(mapper, connection, target: AIDecision) -> None:
+    """Automatically sign the AIDecision record before inserting."""
+    from app.security.integrity import compute_ai_decision_signature
+    target.signature = compute_ai_decision_signature(target)
+

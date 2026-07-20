@@ -457,7 +457,7 @@ export default function DigitalTwinClient() {
         </div>
 
         {/* Selected Info HUD */}
-        <div className="p-6 rounded-2xl glass-panel border border-white/5 space-y-4 min-h-[220px]">
+        <div className="p-6 rounded-2xl glass-panel border border-white/5 space-y-4 min-h-55">
           <h3 className="font-heading font-bold text-xs uppercase tracking-widest text-gray-400">
             Node Telemetry Inspector
           </h3>
@@ -562,7 +562,7 @@ export default function DigitalTwinClient() {
         </div>
 
         {/* Map Container holding ThreeJS Mount and Projected Overlays */}
-        <div ref={containerRef} className="flex-1 min-h-[500px] bg-[#07090f] flex items-center justify-center relative overflow-hidden">
+        <div ref={containerRef} className="flex-1 min-h-125 bg-[#07090f] flex items-center justify-center relative overflow-hidden">
           
           {/* Three.js Canvas Mount */}
           <div ref={mountRef} className="absolute inset-0 w-full h-full" />

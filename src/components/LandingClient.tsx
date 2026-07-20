@@ -284,8 +284,8 @@ export default function LandingClient() {
     <div className="relative min-h-screen bg-[#080B14] overflow-x-hidden text-gray-200">
       {/* Background Orbs */}
       <div className="fixed inset-0 -z-50 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] h-[700px] w-[700px] rounded-full bg-[#3B82F6]/10 blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-[-10%] right-[-10%] h-[800px] w-[800px] rounded-full bg-[#7C3AED]/10 blur-[180px] pointer-events-none" />
+        <div className="absolute top-[-10%] left-[-10%] h-175 w-175 rounded-full bg-[#3B82F6]/10 blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] right-[-10%] h-200 w-200 rounded-full bg-[#7C3AED]/10 blur-[180px] pointer-events-none" />
         <div className="absolute inset-0 cyber-grid opacity-30 pointer-events-none" />
       </div>
 
@@ -347,7 +347,7 @@ export default function LandingClient() {
           </button>
 
           <Link
-            href="/login"
+            href="/dashboard"
             className="flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-wider text-black bg-[#00E5FF] hover:bg-[#00E5FF]/90 rounded-xl transition-all shadow-[0_0_15px_rgba(0,229,255,0.3)] hover:shadow-[0_0_25px_rgba(0,229,255,0.5)] cursor-pointer"
           >
             Launch Command Center <ArrowRight className="w-3.5 h-3.5" />
@@ -406,7 +406,7 @@ export default function LandingClient() {
             colors={["#00E5FF", "#3B82F6", "#7C3AED", "#00E5FF"]}
           >
             <Link
-              href="/login"
+              href="/dashboard"
               className="flex items-center gap-3 px-8 py-4 text-sm font-bold uppercase tracking-widest text-black bg-[#00E5FF] rounded-xl transition-all cursor-pointer"
             >
               Launch Command Center <ArrowRight className="w-4 h-4" />

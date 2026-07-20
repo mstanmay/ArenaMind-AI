@@ -164,7 +164,7 @@ export default function CrowdIntelligencePage() {
           <h3 className="font-heading font-black text-sm uppercase tracking-widest text-white mb-6">
             Inflow vs Dissipation Rate (Guests/min)
           </h3>
-          <div className="h-[280px] w-full">
+          <div className="h-70 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={MOCK_FLOW_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
@@ -200,7 +200,7 @@ export default function CrowdIntelligencePage() {
           <h3 className="font-heading font-black text-sm uppercase tracking-widest text-white mb-6">
             Sensor Queue Wait Times (Minutes)
           </h3>
-          <div className="h-[280px] w-full">
+          <div className="h-70 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={gates} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <XAxis dataKey="name" stroke="rgba(255,255,255,0.2)" fontSize={10} tickLine={false} />

@@ -125,7 +125,7 @@ export default function VendorIntelligencePage() {
           <h3 className="font-heading font-black text-sm uppercase tracking-widest text-white mb-6">
             Concession Revenue by Zone (k$)
           </h3>
-          <div className="h-[280px] w-full">
+          <div className="h-70 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={MOCK_ZONE_REVENUE} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <XAxis dataKey="zone" stroke="rgba(255,255,255,0.2)" fontSize={10} tickLine={false} />
@@ -151,7 +151,7 @@ export default function VendorIntelligencePage() {
           <h3 className="font-heading font-black text-sm uppercase tracking-widest text-white mb-6">
             Peak Demand Projection Curve (Guests/m)
           </h3>
-          <div className="h-[280px] w-full">
+          <div className="h-70 w-full">
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={MOCK_DEMAND_FORECAST} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                 <defs>
@@ -202,7 +202,7 @@ export default function VendorIntelligencePage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stocks.map((st) => (
-            <div key={st.name} className="p-4 rounded-xl bg-white/1 border border-white/5 flex flex-col justify-between h-[155px]">
+            <div key={st.name} className="p-4 rounded-xl bg-white/1 border border-white/5 flex flex-col justify-between h-38.75">
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-[10px] font-mono text-gray-500">{st.name}</span>

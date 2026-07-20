@@ -195,7 +195,7 @@ export default function EmergencyCenterPage() {
               {responders.map((rep) => {
                 const isDispatched = rep.status === "Dispatched";
                 return (
-                  <div key={rep.id} className="p-6 rounded-2xl glass-panel border border-white/5 flex flex-col justify-between h-[200px]">
+                  <div key={rep.id} className="p-6 rounded-2xl glass-panel border border-white/5 flex flex-col justify-between h-50">
                     <div>
                       <div className="flex justify-between items-start mb-4">
                         <span className="text-[10px] font-mono text-gray-500">{rep.location}</span>

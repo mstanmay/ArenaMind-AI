@@ -43,7 +43,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`relative flex flex-col h-screen glass-panel border-r border-white/5 text-gray-300 select-none z-40 shrink-0 transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isExpanded ? 'w-[280px]' : 'w-[80px]'}`}
+      className={`relative flex flex-col h-screen glass-panel border-r border-white/5 text-gray-300 select-none z-40 shrink-0 transition-[width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${isExpanded ? 'w-70' : 'w-20'}`}
     >
       {/* Title logo section */}
       <div className="flex items-center justify-between h-20 px-6 border-b border-white/5">

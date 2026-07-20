@@ -434,8 +434,8 @@ export default function AmbientBackground() {
       <div ref={mountRef} className="absolute inset-0 block h-full w-full opacity-75" />
 
       {/* Backdrop Orbs for parallax layered lighting */}
-      <div className="absolute -top-40 -left-40 h-[600px] w-[600px] rounded-full bg-linear-to-tr from-[#3B82F6] to-[#7C3AED] opacity-[0.06] blur-[150px] pointer-events-none" />
-      <div className="absolute -bottom-60 -right-40 h-[700px] w-[700px] rounded-full bg-linear-to-br from-[#00E5FF] to-[#7C3AED] opacity-[0.06] blur-[160px] pointer-events-none" />
+      <div className="absolute -top-40 -left-40 h-150 w-150 rounded-full bg-linear-to-tr from-[#3B82F6] to-[#7C3AED] opacity-[0.06] blur-[150px] pointer-events-none" />
+      <div className="absolute -bottom-60 -right-40 h-175 w-175 rounded-full bg-linear-to-br from-[#00E5FF] to-[#7C3AED] opacity-[0.06] blur-[160px] pointer-events-none" />
 
       {/* Floating telemetry widget in bottom-right corner */}
       <div className="absolute bottom-6 right-6 z-50 pointer-events-auto">

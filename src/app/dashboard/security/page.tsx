@@ -347,7 +347,7 @@ export default function SecurityCenterPage() {
 
                   {inc.auditId && (
                     <div className="mt-3 p-2 bg-black/35 rounded border border-white/5 font-mono text-[9px] text-gray-400 flex items-center justify-between">
-                      <span className="truncate max-w-[120px]">🗄️ Record: {inc.auditId.slice(0, 18)}...</span>
+                      <span className="truncate max-w-30">🗄️ Record: {inc.auditId.slice(0, 18)}...</span>
                       <button
                         onClick={() => handleVerify(inc.auditId!)}
                         className="text-[9px] text-[#00E5FF] hover:underline bg-transparent border-0 cursor-pointer"
@@ -445,7 +445,7 @@ export default function SecurityCenterPage() {
                           {log.event_type.replace("_", " ")}
                         </span>
                       </td>
-                      <td className="py-3.5 text-gray-400 truncate max-w-[150px]">{log.uuid}</td>
+                      <td className="py-3.5 text-gray-400 truncate max-w-37.5">{log.uuid}</td>
                       <td className="py-3.5 text-center">
                         <div className="inline-flex items-center gap-1.5 text-[#22C55E] bg-[#22C55E]/10 border border-[#22C55E]/20 px-2 py-0.5 rounded text-[10px] font-bold">
                           <Lock className="w-3 h-3" /> SECURED

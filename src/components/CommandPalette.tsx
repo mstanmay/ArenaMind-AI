@@ -90,7 +90,7 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
             </div>
 
             {/* Command Results */}
-            <div className="max-h-[300px] overflow-y-auto p-2 space-y-1">
+            <div className="max-h-75 overflow-y-auto p-2 space-y-1">
               {filteredItems.length > 0 ? (
                 filteredItems.map((item) => {
                   const Icon = item.icon;

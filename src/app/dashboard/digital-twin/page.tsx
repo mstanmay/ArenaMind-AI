@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 const DigitalTwinClient = dynamic(() => import("@/components/DigitalTwinClient"), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-full flex flex-col items-center justify-center min-h-[500px]">
+    <div className="w-full h-full flex flex-col items-center justify-center min-h-125">
       <div className="relative flex flex-col items-center gap-4 text-[#7C3AED]">
         <div className="absolute inset-0 bg-[#7C3AED]/20 blur-xl rounded-full" />
         <Loader2 className="w-10 h-10 animate-spin relative z-10" />
