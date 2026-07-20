@@ -308,13 +308,29 @@ export default function DigitalTwinClient() {
 
     let isVisible = true;
     const handleVisibilityChange = () => {
-      isVisible = document.visibilityState === "visible";
+      const nextVisible = document.visibilityState === "visible";
+      if (nextVisible !== isVisible) {
+        isVisible = nextVisible;
+        if (isVisible) {
+          if (!animationId) {
+            animate();
+          }
+        } else {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = 0;
+          }
+        }
+      }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     const animate = () => {
+      if (!isVisible) {
+        animationId = 0;
+        return;
+      }
       animationId = requestAnimationFrame(animate);
-      if (!isVisible) return;
 
       controls.update();
 

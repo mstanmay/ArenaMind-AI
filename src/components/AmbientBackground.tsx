@@ -226,14 +226,31 @@ export default function AmbientBackground() {
 
     // Visibility observer to pause animation loop when hidden
     const handleVisibilityChange = () => {
-      isVisible = document.visibilityState === "visible";
+      const nextVisible = document.visibilityState === "visible";
+      if (nextVisible !== isVisible) {
+        isVisible = nextVisible;
+        if (isVisible) {
+          if (!animationId) {
+            clock.start();
+            animateLoop();
+          }
+        } else {
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = 0;
+          }
+        }
+      }
     };
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     // ANIMATION LOOP
     function animateLoop() {
+      if (!isVisible) {
+        animationId = 0;
+        return;
+      }
       animationId = requestAnimationFrame(animateLoop);
-      if (!isVisible) return; // Pause rendering if tab is hidden
 
       const time = clock.getElapsedTime() * SPEED_MULT;
 
